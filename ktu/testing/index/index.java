@@ -27,35 +27,51 @@ public class index {
 	
 	private Json getAnwser(int id, String key, String name) {
 		Json json = new Json();
-		if (db.serverExist(id)) {
-			if (db.keyCorrect(id, key)) {
-				int votes = db.getVotes(id, key);
-				json.put("error", 0);
-				json.put("votes", votes);
+		if (name == null) {
+			if (db.serverExist(id)) {
+				if (db.keyCorrect(id, key)) {
+					int votes = db.getVotes(id, key);
+					json.put("error", 0);
+					json.put("votes", votes);
+				} else {
+					json.put("error", 1);
+					json.put("error_message", "Key or ID doesn't match! Please check them again.");
+				}
 			} else {
 				json.put("error", 1);
 				json.put("error_message", "Key or ID doesn't match! Please check them again.");
 			}
 		} else {
-			json.put("error", 1);
-			json.put("error_message", "Key or ID doesn't match! Please check them again.");
+			if (db.serverExist(id)) {
+				if (db.keyCorrect(id, key)) {
+					boolean voted = db.didVote(id, key, name);
+					json.put("error", 0);
+					json.put("voted", voted);
+				} else {
+					json.put("error", 1);
+					json.put("error_message", "Key or ID doesn't match! Please check them again.");
+				}
+			} else {
+				json.put("error", 1);
+				json.put("error_message", "Key or ID doesn't match! Please check them again.");
+			}
 		}
 		return json;
 	}
 
 	private String getName() {
-		if (this.args.length == 3)
-			return this.args[2];
+		if (this.args.length == 4)
+			return this.args[3];
 		return null;
 	}
 
 	private String getKey() {
-		return this.args[1];
+		return this.args[2];
 	}
 
 	private int getID() throws NumberFormatException {
-		if (isNumber(this.args[0]))
-			return Integer.parseInt(this.args[0]);
+		if (isNumber(this.args[1]))
+			return Integer.parseInt(this.args[1]);
 		throw new NumberFormatException("ID is invalid");
 	}
 	
@@ -85,7 +101,7 @@ public class index {
 	}
 	
 	private boolean enoughArgs() {
-		return this.args.length >= 2;
+		return this.args.length >= 3;
 	}
 
 }

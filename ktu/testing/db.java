@@ -19,6 +19,16 @@ public class db {
 			Arrays.asList("10", "key10", "10000")
 			));
 	
+	private static List<List<String>> voted = new ArrayList<>(Arrays.asList(
+			Arrays.asList("Name1", "1"),
+			Arrays.asList("Name3", "1"),
+			Arrays.asList("Name4", "3"),
+			Arrays.asList("Name5", "6"),
+			Arrays.asList("Name6", "8"),
+			Arrays.asList("Name7", "3"),
+			Arrays.asList("Name8", "1")
+			));
+	
 	public static boolean serverExist(int id) {
 		for (List<String> server : servers) {
 			int tempId = Integer.parseInt(server.get(0));
@@ -53,6 +63,19 @@ public class db {
 			}
 		}
 		return -1;
+	}
+	
+	public static boolean didVote(int id, String key, String name) {
+		if (serverExist(id)) {
+			if (keyCorrect(id, key)) {
+				for (List<String> line : voted) {
+					if (line.get(0).equals(name) && Integer.parseInt(line.get(1)) == id) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 }
