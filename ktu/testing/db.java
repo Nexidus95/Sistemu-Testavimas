@@ -78,4 +78,14 @@ public class db {
 		return false;
 	}
 
+	public static void remove(int id) {
+		for (List<String> server : servers) {
+			int tempId = Integer.parseInt(server.get(0));
+			if (id == tempId) {
+				servers.remove(server);
+				return;
+			}
+		}
+	}
+
 }
