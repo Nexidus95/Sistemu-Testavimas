@@ -2,6 +2,7 @@ package ktu.testing;
 
 import ktu.testing.delete.delete;
 import ktu.testing.index.index;
+import ktu.testing.sitemaps.sitemaps;
 import ktu.testing.system.system;
 
 public class Main {
@@ -15,7 +16,10 @@ public class Main {
 			new delete(args);
 		}
 		if (args[0].equals("system")) {
-			new system(args);
+			new system();
+		}
+		if (args[0].equals("sitemap")) {
+			new sitemaps();
 		}
 	}
 }

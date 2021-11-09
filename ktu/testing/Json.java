@@ -32,4 +32,8 @@ public class Json {
 		toReturn += "}";
 		return toReturn;
 	}
+
+	public Object get(String key) {
+		return map.get(key);
+	}
 }

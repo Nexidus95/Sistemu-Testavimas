@@ -12,7 +12,7 @@ import ktu.testing.db;
 
 public class system {
 	
-	public system(String[] args) {
+	public system() {
 		for (List<String> line : db.getServers()) {
 			getPlayers(line.get(0), line.get(3), Integer.valueOf(line.get(4)));
 		}
