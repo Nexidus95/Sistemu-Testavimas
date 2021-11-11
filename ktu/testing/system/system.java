@@ -14,18 +14,18 @@ public class system {
 	
 	public system() {
 		for (List<String> line : db.getServers()) {
-			getPlayers(line.get(0), line.get(3), Integer.valueOf(line.get(4)));
+			System.out.println(getPlayers(line.get(0), line.get(3), Integer.valueOf(line.get(4))).toString());
 		}
 	}
 	
-	private void getPlayers(String ID, String IP, int port) {
+	public Json getPlayers(String ID, String IP, int port) {
 		Json json = new Json();
 		String[] info = connect(IP, port);
 		json.put("ID", ID);
 		json.put("Current players", info[0]);
 		json.put("Max players", info[1]);
 		json.put("MOTD", info[2]);
-		System.out.println(json);
+		return json;
 	}
 	
    @SuppressWarnings("resource")
