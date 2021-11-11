@@ -32,13 +32,13 @@ class deleteTest {
 	}
 
 	@Test
-	void testGetKey1() {
+	void testGetKeyWhenKeeExist() {
 		String val = (new delete(this.args1)).getKey();
 		assertEquals("key1", val);
 	}
 
 	@Test
-	void testGetKey2() {
+	void testGetKeyWhenNotEnoughArgs() {
 		Exception exception = assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
 			String val = (new delete(this.args2)).getKey();
 			assertEquals("key1", val);
@@ -51,37 +51,37 @@ class deleteTest {
 	}
 
 	@Test
-	void testGetID1() {
+	void testGetIDWhenIDDoesntExist() {
 		int val = (new delete(this.args1)).getID();
 		assertEquals(-1, val);
 	}
 
 	@Test
-	void testGetID2() {
+	void testGetIDWhenIDExist() {
 		int val = (new delete(this.args2)).getID();
 		assertEquals(1, val);
 	}
 
 	@Test
-	void testIsNumber1() {
+	void testIsNumberWhenIsIncorrectNumber() {
 		boolean val = (new delete()).isNumber(this.args1[1]);
 		assertFalse(val);
 	}
 
 	@Test
-	void testIsNumber2() {
+	void testIsNumberWhenIsCorrectNumber() {
 		boolean val = (new delete()).isNumber(this.args2[1]);
 		assertTrue(val);
 	}
 
 	@Test
-	void testEnoughArgs1() {
+	void testEnoughArgsWhenArgsEnough() {
 		boolean val = (new delete(this.args1)).enoughArgs();
 		assertTrue(val);
 	}
 
 	@Test
-	void testEnoughArgs2() {
+	void testEnoughArgsWhenArgsNotEnough() {
 		boolean val = (new delete(this.args2)).enoughArgs();
 		assertFalse(val);
 	}

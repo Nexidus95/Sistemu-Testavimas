@@ -27,13 +27,13 @@ class JsonTest {
 	}
 
 	@Test
-	void testRemove1() {
+	void testRemoveWhenKeyDoesntExist() {
 		boolean val = json.remove("key");
 		assertEquals(false, val);
 	}
 
 	@Test
-	void testRemove2() {
+	void testRemoveWhenKeyExist() {
 		boolean val = json.remove("TEST");
 		assertEquals(true, val);
 	}
@@ -45,13 +45,13 @@ class JsonTest {
 	}
 
 	@Test
-	void testGet1() {
+	void testGetWhenKeyExist() {
 		Object val = json.get("TEST");
 		assertEquals(10, val);
 	}
 
 	@Test
-	void testGet2() {
+	void testGetWhenKeyDoesntExist() {
 		Object val = json.get("key");
 		assertEquals(null, val);
 	}

@@ -19,25 +19,25 @@ class systemTest {
 	}
 
 	@Test
-	void testGetPlayers1() {
+	void testGetPlayersWhenServerOnline() {
 		Json val = (new system()).getPlayers("1", "kaimux.lt", 25565);
 		assertNotEquals("Offline", val.get("MOTD"));
 	}
 
 	@Test
-	void testGetPlayers2() {
+	void testGetPlayersWhenServerOffline() {
 		Json val = (new system()).getPlayers("1", "donotexist", 25565);
 		assertEquals("Offline", val.get("MOTD"));
 	}
 
 	@Test
-	void testConnect1() {
+	void testConnectWithOnlineServer() {
 		String[] val = (new system()).connect("kaimux.lt", 25565);
 		assertNotEquals("Offline", val[2]);
 	}
 
 	@Test
-	void testConnect2() {
+	void testConnectWithOfflineServer() {
 		String[] val = (new system()).connect("donotexist", 25565);
 		assertEquals("Offline", val[2]);
 	}
