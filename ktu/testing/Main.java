@@ -10,7 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		if (args.length == 0) return;
 		if (args[0].equals("index")) {
-			new index(args);
+			new index(args).run();
 		}
 		if (args[0].equals("delete")) {
 			new delete(args).run();

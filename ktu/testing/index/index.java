@@ -5,10 +5,16 @@ import ktu.testing.db;
 
 public class index {
 	
-	String[] args = null;
-
+	private String[] args;
+	
+	public index() {
+		
+	}
 	public index(String[] args) {
 		this.args = args;
+	}
+	
+	public void run() {
 		if (!enoughArgs()) {
 			Json json = new Json();
 			json.put("error", 1);
@@ -25,7 +31,7 @@ public class index {
 		System.out.println(jo.toString());
 	}
 	
-	private Json getAnwser(int id, String key, String name) {
+	public Json getAnwser(int id, String key, String name) {
 		Json json = new Json();
 		if (name == null) {
 			if (db.serverExist(id)) {
@@ -59,20 +65,20 @@ public class index {
 		return json;
 	}
 
-	private String getName() {
+	public String getName() {
 		if (this.args.length == 4)
 			return this.args[3];
 		return null;
 	}
 
-	private String getKey() {
+	public String getKey() {
 		return this.args[2];
 	}
 
-	private int getID() throws NumberFormatException {
+	public int getID() throws NumberFormatException {
 		if (isNumber(this.args[1]))
 			return Integer.parseInt(this.args[1]);
-		throw new NumberFormatException("ID is invalid");
+		return -1;
 	}
 	
 	public boolean isNumber(String str)
@@ -100,7 +106,7 @@ public class index {
 	    return true;
 	}
 	
-	private boolean enoughArgs() {
+	public boolean enoughArgs() {
 		return this.args.length >= 3;
 	}
 

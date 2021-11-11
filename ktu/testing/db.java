@@ -6,6 +6,10 @@ import java.util.List;
 
 public class db {
 	
+	public db() {
+		
+	}
+	
 	private static List<List<String>> servers = new ArrayList<>(Arrays.asList(
 			Arrays.asList("1", "key1", "1000", "kaimux.lt", "25565"),
 			Arrays.asList("2", "key2", "2000", "mc.koridorius.lt", "25565"),

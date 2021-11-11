@@ -19,11 +19,11 @@ public class sitemaps {
 		System.out.println(fullSitemap);
 	}
 
-	private String combineAll(String header, String generateMiddle, String footer) {
+	public String combineAll(String header, String generateMiddle, String footer) {
 		return header+"\n"+generateMiddle+"\n"+footer;
 	}
 
-	private String generateMiddle(List<Json> allServers) {
+	public String generateMiddle(List<Json> allServers) {
 		String toReturn = "";
 		for (Json json : allServers) {
 			toReturn += "<url><loc>https://minecraftsurvivalservers.com/server/"+json.get("ip")+"/"+json.get("id")+"</loc></url>";
@@ -31,11 +31,11 @@ public class sitemaps {
 		return toReturn;
 	}
 
-	private String getHeader() {
+	public String getHeader() {
 		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?><urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:news=\"http://www.google.com/schemas/sitemap-news/0.9\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\" xmlns:mobile=\"http://www.google.com/schemas/sitemap-mobile/1.0\" xmlns:image=\"http://www.google.com/schemas/sitemap-image/1.1\" xmlns:video=\"http://www.google.com/schemas/sitemap-video/1.1\">";
 	}
 
-	private List<Json> getAllServers() {
+	public List<Json> getAllServers() {
 		List<Json> temp = new ArrayList<>();
 		for (List<String> line : db.getServers()) {
 			Json json = new Json();
@@ -49,7 +49,7 @@ public class sitemaps {
 		return temp;
 	}
 	
-	private String getFooter() {
+	public String getFooter() {
 		return "</urlset>";
 	}
 }
