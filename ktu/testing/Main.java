@@ -13,7 +13,7 @@ public class Main {
 			new index(args);
 		}
 		if (args[0].equals("delete")) {
-			new delete(args);
+			new delete(args).run();
 		}
 		if (args[0].equals("system")) {
 			new system();

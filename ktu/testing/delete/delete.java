@@ -6,10 +6,16 @@ import ktu.testing.db;
 public class delete {
 	
 	private String[] args;
+	
+	public delete() {
+		
+	}
 
 	public delete(String[] args) {
 		this.args = args;
-		
+	}
+	
+	public void run() {
 		if (!enoughArgs()) {
 			Json json = new Json();
 			json.put("error", 1);
@@ -19,6 +25,8 @@ public class delete {
 		}
 
 		int id = getID();
+		if (id == -1)
+			throw new NumberFormatException("Invalid ID");
 		String key = getKey();
 		
 		Json jo = deleteInfo(id, key);
@@ -26,7 +34,7 @@ public class delete {
 	}
 
 
-	private Json deleteInfo(int id, String key) {
+	public Json deleteInfo(int id, String key) {
 		Json json = new Json();
 		if (db.serverExist(id)) {
 			if (db.keyCorrect(id, key)) {
@@ -44,14 +52,14 @@ public class delete {
 		return json;
 	}
 
-	private String getKey() {
+	public String getKey() {
 		return this.args[2];
 	}
 
-	private int getID() throws NumberFormatException {
+	public int getID() {
 		if (isNumber(this.args[1]))
 			return Integer.parseInt(this.args[1]);
-		throw new NumberFormatException("ID is invalid");
+		return -1;
 	}
 	
 	public boolean isNumber(String str)
@@ -79,7 +87,7 @@ public class delete {
 	    return true;
 	}
 	
-	private boolean enoughArgs() {
+	public boolean enoughArgs() {
 		return this.args.length == 3;
 	}
 }
