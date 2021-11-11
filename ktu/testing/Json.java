@@ -11,8 +11,8 @@ public class Json {
 		map.put(key, value);
 	}
 	
-	public void remove(String key) {
-		map.remove(key);
+	public boolean remove(String key) {
+		return map.remove(key) != null;
 	}
 	
 	@Override
@@ -34,6 +34,6 @@ public class Json {
 	}
 
 	public Object get(String key) {
-		return map.get(key);
+		return map.getOrDefault(key, null);
 	}
 }
